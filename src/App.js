@@ -1,7 +1,7 @@
 import React from "react"
 import "./App.css"
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom"
-import Search from "./components/navbar/Search"
+import Search from "./components/navbar/search/Search"
 import logo from "./components/image/logo.png"
 import Dropdown from "./components/navbar/dropdown/Dropdown"
 
