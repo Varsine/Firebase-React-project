@@ -22,7 +22,7 @@ class SignIn extends React.Component {
     const {authError} = this.props
     const {email, password, error} = this.state
     const isInvalid = password === "" || email === ""
-    if (!isInvalid) return <UserProfile />
+    //if (!isInvalid) return <UserProfile />
     return (
       <div className="sing-in">
         <h2>Sign In</h2>

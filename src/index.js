@@ -7,7 +7,7 @@ import {reactReduxFirebase, getFirebase} from "react-redux-firebase"
 import {reduxFirestore, getFirestore} from "redux-firestore"
 import thunk from "redux-thunk"
 import {createStore, applyMiddleware, compose} from "redux"
-import firebase from "./components/config/firebaseConfig"
+import firebase from "./components/navbar/dashboard/config/firebaseConfig"
 import rootReducer from "./components/navbar/store/reducer/rootReducer"
 
 //const initialState = {}
