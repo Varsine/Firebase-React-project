@@ -88,46 +88,151 @@ input[type="text"] {
     border: 1px solid #ccc;
   }
 }
-.dropdown {
+
+.home-img {
+  width: 100%;
+  height: 100%;
+}
+.users-form {
+  margin: 3% 15%;
+}
+.users-form h1 {
+  color: #7e6e6e;
   float: left;
-  overflow: hidden;
 }
 
-.dropdown .dropbtn {
-  font-size: 16px;
+.add-user {
+  float: right;
+  background-color: rgb(52, 117, 52);
+  height: 30px;
   border: none;
-  outline: none;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
 }
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+.trash-btn {
+  border: none;
+  float: right;
+  background-color: navajowhite;
+}
+.trash-btn:hover {
+  background-color: rgb(238, 79, 79);
+}
+.add-user:hover {
+  background-color: rgb(122, 211, 122);
 }
 
-.dropdown-link {
-  float: none;
-  color: black;
-  padding: 12px 16px;
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background: rgb(94, 90, 90);
+}
+.popup-inner {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  margin: auto;
+  background-color: rgb(224, 215, 215);
+  color: #7e6e6e;
+  font-weight: 600;
+}
+.popup-inner label {
+  display: block;
+  margin: 1% 20%;
+}
+.popup-inner input {
+  width: 60%;
+  height: 10%;
+  margin: 1% 20%;
+  background-color: honeydew;
+}
+.popup-inner input:hover {
+  background-color: rgb(233, 194, 194);
+}
+.popup-inner button {
+  display: block;
+  margin-left: 42%;
+  background-color: rgb(83, 138, 83);
+  border: none;
+  height: 25px;
+}
+.popup-inner button:hover {
+  background-color: rgb(165, 223, 165);
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  color: rgb(108, 108, 143);
+  font-weight: 600;
+  font-size: large;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.user-email {
+  text-decoration: none;
+}
+.user-email:hover {
+  color: rgb(145, 132, 156);
+}
+.sing-div {
+  float: right;
+}
+.sing-link {
   text-decoration: none;
   display: block;
-  text-align: left;
+  border-style: solid;
+  border-width: 2px;
+  margin-top: 5%;
+  background-color: rgb(238, 228, 209);
+  font-weight: 600;
 }
-
-.dropbtn:hover,
-.dropdown-link:hover {
-  background-color: #ddd;
+.sing-link:hover {
+  background-color: rgb(197, 176, 197);
 }
-
-.dropdown:hover .dropdown-content {
+.sing-in,
+.sing-up {
+  margin: 3% 30%;
+  background-color: violet;
+  padding: 3% 5%;
+}
+.sing-in h2,
+.sing-up h2 {
+  color: #7e6e6e;
+}
+.sing-in label,
+.sing-up label {
   display: block;
 }
-.fa-caret-down {
-  color: #ccc;
+.sing-in input,
+.sing-up input {
+  display: block;
+  height: 40px;
+  width: 90%;
+  margin-bottom: 10px;
+}
+.sing-in button,
+.sing-up button {
+  width: 25%;
+  height: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #7e6e6e;
+  margin-top: 20px;
 }
