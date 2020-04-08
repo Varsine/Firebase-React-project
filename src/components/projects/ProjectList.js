@@ -38,11 +38,13 @@ class ProjectList extends React.Component {
                     <td>{client.email}</td>
                   </Link>
                   <td>{client.balance}</td>
-                  <td>
-                    <button className="update-icon">
-                      <img src="http://icons.iconarchive.com/icons/gakuseisean/ivista-2/32/Files-Edit-file-icon.png" />
-                    </button>
-                  </td>
+                  <Link to={"/project/update/" + client.id}>
+                    <td>
+                      <button className="update-icon">
+                        <img src="http://icons.iconarchive.com/icons/gakuseisean/ivista-2/32/Files-Edit-file-icon.png" />
+                      </button>
+                    </td>
+                  </Link>
                   <td>
                     <button
                       onClick={() => this.props.removeUser(client.id)}
