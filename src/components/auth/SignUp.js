@@ -1,64 +1,51 @@
 import React from "react"
 import "firebase/firestore"
-import {singUp} from "../store/action/authAction"
+import {signUp} from "../store/action/authAction"
 import {connect} from "react-redux"
 import {Redirect} from "react-router-dom"
-//import UserProfile from "../singIn/UserProfile"
 
-class SingUp extends React.Component {
+class SignUp extends React.Component {
   state = {
     firstName: "",
     lastName: "",
     email: "",
-    passwordOne: "",
-    passwordTwo: ""
+    password: ""
+    //passwordTwo: ""
   }
-  handleChande = e => {
+  handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
     })
   }
   handleSubmit = e => {
     e.preventDefault()
-    this.props.singUp(this.state)
-    this.setState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      passwordOne: "",
-      passwordTwo: "",
-      error: null
-    })
+    this.props.signUp(this.state)
   }
 
   render() {
-    console.log(this.props)
+    const {authError, auth} = this.props
+    if (auth.uid) return <Redirect to="/" />
+
     const {
       firstName,
       lastName,
       email,
-      passwordOne,
-      passwordTwo,
-      error
+      password
+      //passwordTwo,
     } = this.state
     const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === "" ||
-      email === "" ||
-      lastName === "" ||
-      firstName === ""
-    const {auth, authError} = this.props
-    if (auth.uid) return <Redirect to="/" />
+      // passwordOne !== passwordTwo ||
+      password === "" || email === "" || lastName === "" || firstName === ""
     return (
-      <div className="sing-up">
+      <div className="container">
         <h2>Sing Up</h2>
-        <form onSubmit={this.handleChande}>
+        <form onSubmit={this.handleSubmit}>
           <label>First Name</label>
           <input
             type="text"
             id="firstName"
             value={firstName}
-            onChange={this.handleChande}
+            onChange={this.handleChange}
             required
           />
           <label>Last Name</label>
@@ -66,7 +53,7 @@ class SingUp extends React.Component {
             type="text"
             id="lastName"
             value={lastName}
-            onChange={this.handleChande}
+            onChange={this.handleChange}
             required
           />
           <label>Email</label>
@@ -74,29 +61,31 @@ class SingUp extends React.Component {
             type="email"
             id="email"
             value={email}
-            onChange={this.handleChande}
+            onChange={this.handleChange}
             required
           />
           <label>Password</label>
           <input
             type="password"
-            id="passwordOne"
-            value={passwordOne}
-            onChange={this.handleChande}
+            id="password"
+            value={password}
+            onChange={this.handleChange}
             required
           />
-          <label>Repeat Password</label>
+          {/* <label>Repeat Password</label>
           <input
             type="password"
             id="passwordTwo"
             value={passwordTwo}
-            onChange={this.handleChande}
+            onChange={this.handleChange}
             required
-          />
-          <button onClick={this.handlerSubmit} disabled={isInvalid}>
-            Sing up
+          /> */}
+          <button className="btn pink lighten-1 z-depth-0" disabled={isInvalid}>
+            Sign up
           </button>
-          {authError ? <p>{authError}</p> : null}
+          <div className="red-text center">
+            {authError ? <p>{authError}</p> : null}
+          </div>{" "}
         </form>
       </div>
     )
@@ -104,6 +93,7 @@ class SingUp extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     auth: state.firebase.auth,
     authError: state.auth.authError
@@ -112,8 +102,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    singUp: newUser => dispatch(singUp(newUser))
+    signUp: newUser => dispatch(signUp(newUser))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingUp)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

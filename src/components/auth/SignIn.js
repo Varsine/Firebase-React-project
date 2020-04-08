@@ -1,8 +1,8 @@
 import React from "react"
 import {Link} from "react-router-dom"
-import UserProfile from "./UserProfile"
 import {connect} from "react-redux"
 import {singIn} from "../store/action/authAction"
+import {Redirect} from "react-router-dom"
 
 class SignIn extends React.Component {
   state = {
@@ -19,23 +19,24 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const {authError} = this.props
+    const {authError, auth} = this.props
     const {email, password, error} = this.state
     const isInvalid = password === "" || email === ""
-    //if (!isInvalid) return <UserProfile />
+    if (auth.uid) return <Redirect to="/" />
     return (
-      <div className="sing-in">
-        <h2>Sign In</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>Email</label>
+      <div className="container">
+        <h5 className="grey-text text-darken-3">Sign In</h5>
+        <form className="white" onSubmit={this.handleSubmit}>
+          <label htmlFor="email">Email</label>
           <input type="email" id="email" onChange={this.handleChange} />
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input type="password" id="password" onChange={this.handleChange} />
-
-          {/* <Link to={"/dropdown/singIn/profile/1"}> */}
-          <button disabled={isInvalid}>Sing in</button>
-          <div>{authError ? <p>{authError}</p> : null}</div>
-          {/* </Link> */}
+          <button className="btn pink lighten-1 z-depth-0" disabled={isInvalid}>
+            Log in
+          </button>
+          <div className="red-text center">
+            {authError ? <p>{authError}</p> : null}
+          </div>
         </form>
       </div>
     )
@@ -44,7 +45,8 @@ class SignIn extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    authError: state.auth.authError
+    authError: state.auth.authError,
+    auth: state.firebase.auth
   }
 }
 

@@ -2,34 +2,17 @@ import React from "react"
 import {compose} from "redux"
 import {connect} from "react-redux"
 import {firestoreConnect} from "react-redux-firebase"
-import Loading from "./loading/Loading"
+import Loading from "../help component/loading/Loading"
 import {Link} from "react-router-dom"
-import CreateNewUser from "./CreateNewUser"
 import {removeUser} from "../store/action/authAction"
 
-export class Users extends React.Component {
-  state = {
-    showPopup: false
-  }
-  togglePopup = () => {
-    this.setState({
-      showPopup: !this.state.showPopup
-    })
-  }
-  handleRemove = index => {
-    this.props.clients.filter(item => {
-      return item.id !== index
-    })
-  }
+class ProjectList extends React.Component {
   render() {
+    console.log(this.props)
     const clients = this.props.clients
     return (
       <div className="users-form">
-        <h1>Users</h1>
-        <button className="add-user" onClick={this.togglePopup}>
-          Creat User
-        </button>
-
+        <h1>List of employees</h1>
         {!clients ? (
           <Loading />
         ) : (
@@ -41,6 +24,7 @@ export class Users extends React.Component {
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Balance ($)</th>
+                <th>Updating Data </th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -50,21 +34,21 @@ export class Users extends React.Component {
                   <td>{index + 1}</td>
                   <td>{client.firstName}</td>
                   <td>{client.lastName}</td>
-                  <td>
-                    <Link
-                      className="user-email"
-                      to={"/dashboard/user-" + (index + 1)}
-                    >
-                      {client.email}
-                    </Link>
-                  </td>
+                  <Link to={"/project/" + client.id}>
+                    <td>{client.email}</td>
+                  </Link>
                   <td>{client.balance}</td>
                   <td>
+                    <button className="update-icon">
+                      <img src="http://icons.iconarchive.com/icons/gakuseisean/ivista-2/32/Files-Edit-file-icon.png" />
+                    </button>
+                  </td>
+                  <td>
                     <button
-                      className="trash-btn"
                       onClick={() => this.props.removeUser(client.id)}
+                      className="close-icon"
                     >
-                      <i className="fa fa-trash"></i>
+                      <img src="http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/48/Close-2-icon.png" />
                     </button>
                   </td>
                 </tr>
@@ -72,7 +56,6 @@ export class Users extends React.Component {
             </tbody>
           </table>
         )}
-        <div>{this.state.showPopup ? <CreateNewUser /> : null}</div>
       </div>
     )
   }
@@ -84,10 +67,10 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  removeUser: currentId => dispatch(removeUser(currentId))
+  removeUser: id => dispatch(removeUser(id))
 })
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([{collection: "client"}])
-)(Users)
+)(ProjectList)

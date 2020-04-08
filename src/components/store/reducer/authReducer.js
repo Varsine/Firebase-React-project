@@ -1,5 +1,3 @@
-import {auth} from "firebase"
-
 const initState = {
   authError: null
 }
@@ -10,7 +8,7 @@ const authReducer = (state = initState, action) => {
       console.log("login error")
       return {
         ...state,
-        authError: "login failed"
+        authError: "Login failed"
       }
     case "LOGIN_SUCCESS":
       console.log("login success")
@@ -23,17 +21,17 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: null
       }
-    case "SINGUP_SUCCESS":
+    case "SIGNUP_SUCCESS":
       console.log("singup success")
       return {
         ...state,
         authError: null
       }
-    case "SINGUP_ERROR":
+    case "SIGNUP_ERROR":
       console.log("singup error")
       return {
         ...state,
-        authError: action.err
+        authError: "Sign up failed"
       }
     case "DELETE_USER":
       console.log("delet user")

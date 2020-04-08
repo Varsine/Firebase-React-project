@@ -1,11 +1,14 @@
-export const removeUser = current => {
-  return (dispatch, getState, {getFirebase}) => {
+export const removeUser = id => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
     const firebase = getFirebase()
-    const user = firebase.auth()
-
-    user.delete(current).then(() => {
-      dispatch({type: "DELETE_USER"})
-    })
+    const firestore = getFirestore()
+    firestore
+      .collection("client")
+      .doc(id)
+      .delete()
+      .then(() => {
+        dispatch({type: "DELETE_USER"})
+      })
   }
 }
 
@@ -36,15 +39,16 @@ export const signOut = () => {
   }
 }
 
-export const singUp = newUser => {
+export const signUp = newUser => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
     const firebase = getFirebase()
     const firestore = getFirestore()
 
     firebase
       .auth()
-      .signInWithEmailAndPassword(newUser.email, newUser.password)
+      .createUserWithEmailAndPassword(newUser.email, newUser.password)
       .then(resp => {
+        console.log(resp)
         return firestore
           .collection("users")
           .doc(resp.user.uid)
@@ -55,10 +59,10 @@ export const singUp = newUser => {
           })
       })
       .then(() => {
-        dispatch({type: "SINGUP_SUCCESS"})
+        dispatch({type: "SIGNUP_SUCCESS"})
       })
       .catch(err => {
-        dispatch({type: "SINGUP_ERROR", err})
+        dispatch({type: "SIGNUP_ERROR", err})
       })
   }
 }
