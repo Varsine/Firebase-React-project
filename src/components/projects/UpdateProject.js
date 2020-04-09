@@ -25,8 +25,7 @@ class UpdateProject extends React.Component {
   }
 
   render() {
-    const {client, auth} = props
-    if (!auth.uid) return <Redirect to="/signin" />
+    //if (!auth.uid) return <Redirect to="/signin" />
 
     return (
       <div>
