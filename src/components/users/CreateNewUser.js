@@ -1,30 +1,55 @@
 import React from "react"
 import {firestoreConnect} from "react-redux-firebase"
 import {connect} from "react-redux"
-import {createProject} from "../store/action/prajectAction"
+import {createUser} from "../store/action/userAction"
 import {Redirect} from "react-router-dom"
 
-class CreateNewProject extends React.Component {
+class CreateNewUser extends React.Component {
   state = {
     firstName: "",
     lastName: "",
     email: "",
-    balance: ""
+    balance: "",
+    error: ""
   }
   handleChande = e => {
     this.setState({
       [e.target.id]: e.target.value
     })
   }
+
+  validate = () => {
+    const {firstName, lastName, email, balance} = this.state
+    if (firstName == "" || lastName === "" || email === "" || balance === "") {
+      this.setState({
+        error: "Input fields cannot be empty, fill in the fields"
+      })
+    } else if (lastName.length < 3 || firstName.length < 3) {
+      this.setState({
+        error: "Firstname and lastname lengths must be large or equal to 3"
+      })
+    } else if (!email.includes("@")) {
+      this.setState({error: "Email should include @"})
+    } else if (balance < 0) {
+      this.setState({
+        error: "Balance cannot be negative"
+      })
+    } else {
+      return this.state
+    }
+  }
+
   handleSubmit = e => {
     e.preventDefault()
-    this.props.createProject(this.state)
-    this.props.history.push("/")
+    const isValid = this.validate()
+    if (isValid) {
+      this.props.createUser(this.state)
+      this.props.history.push("/")
+    } else {
+      alert(this.state.error)
+    }
   }
   render() {
-    const {auth} = this.props
-    if (!auth.uid) return <Redirect to="/signin" />
-
     const {lastName, firstName, email, balance} = this.state
     return (
       <div>
@@ -34,25 +59,22 @@ class CreateNewProject extends React.Component {
             <input
               type="text"
               id="firstName"
-              value={firstName}
+              value={firstName.slice(0, 1).toUpperCase() + firstName.slice(1)}
               onChange={this.handleChande}
-              required
             />
             <label>Last Name</label>
             <input
               type="text"
               id="lastName"
-              value={lastName}
+              value={lastName.slice(0, 1).toUpperCase() + lastName.slice(1)}
               onChange={this.handleChande}
-              required
             />
             <label>Email</label>
             <input
-              type="email"
+              type="text"
               id="email"
               value={email}
               onChange={this.handleChande}
-              required
             />
             <label>Balans</label>
             <input
@@ -60,7 +82,6 @@ class CreateNewProject extends React.Component {
               id="balance"
               value={balance}
               onChange={this.handleChande}
-              required
             />
             <button className="btn pink lighten-1 z-depth-0">Add User</button>
           </form>
@@ -69,16 +90,11 @@ class CreateNewProject extends React.Component {
     )
   }
 }
-const mapStateToProps = state => {
-  return {
-    auth: state.firebase.auth
-  }
-}
 
 const mapDispatchToProps = dispatch => {
   return {
-    createProject: project => dispatch(createProject(project))
+    createUser: user => dispatch(createUser(user))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateNewProject)
+export default connect(null, mapDispatchToProps)(CreateNewUser)

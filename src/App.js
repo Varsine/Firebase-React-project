@@ -3,11 +3,11 @@ import "./App.css"
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom"
 import Navbar from "./components/layout/Navbar"
 import Dashboard from "./components/dashboard/Dashboard"
-import ProjectDetails from "./components/projects/ProjectDetails"
+import UserDetails from "./components/users/UserDetails"
 import SignIn from "./components/auth/SignIn"
 import SignUp from "./components/auth/SignUp"
-import CreateNewProject from "./components/projects/CreateNewProject"
-import UpdateProject from "./components/projects/UpdateProject"
+import CreateNewUser from "./components/users/CreateNewUser"
+import UpdateUser from "./components/users/UpdateUser"
 
 function App() {
   return (
@@ -19,11 +19,11 @@ function App() {
 
         <Switch>
           <Route exact path="/" component={Dashboard}></Route>
-          <Route path="/project/:id" component={ProjectDetails}></Route>
-          <Route path="/project/update/:id" component={UpdateProject}></Route>
+          <Route path="/user/:id" component={UserDetails}></Route>
+          <Route path="/update/:id" component={UpdateUser}></Route>
           <Route path="/signin" component={SignIn}></Route>
           <Route path="/signup" component={SignUp}></Route>
-          <Route path="/create" component={CreateNewProject}></Route>
+          <Route path="/create" component={CreateNewUser}></Route>
         </Switch>
       </div>
     </Router>

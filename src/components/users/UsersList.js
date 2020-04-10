@@ -6,7 +6,7 @@ import Loading from "../help component/loading/Loading"
 import {Link} from "react-router-dom"
 import {removeUser} from "../store/action/authAction"
 
-class ProjectList extends React.Component {
+class UsersList extends React.Component {
   render() {
     console.log(this.props)
     const clients = this.props.clients
@@ -34,11 +34,11 @@ class ProjectList extends React.Component {
                   <td>{index + 1}</td>
                   <td>{client.firstName}</td>
                   <td>{client.lastName}</td>
-                  <Link to={"/project/" + client.id}>
+                  <Link to={"/user/" + client.id}>
                     <td>{client.email}</td>
                   </Link>
                   <td>{client.balance}</td>
-                  <Link to={"/project/update/" + client.id}>
+                  <Link to={"/update/" + client.id}>
                     <td>
                       <button className="update-icon">
                         <img src="http://icons.iconarchive.com/icons/gakuseisean/ivista-2/32/Files-Edit-file-icon.png" />
@@ -75,4 +75,4 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([{collection: "client"}])
-)(ProjectList)
+)(UsersList)

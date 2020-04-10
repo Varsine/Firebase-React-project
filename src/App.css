@@ -30,3 +30,15 @@
 .home-img {
   width: 12%;
 }
+.user-img {
+  width: 30%;
+  display: block;
+}
+.userProfile-info {
+  border-style: inset;
+  font-size: 18px;
+  font-weight: 600;
+}
+.userUpdate-form {
+  margin: 2% 20%;
+}

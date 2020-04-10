@@ -12,12 +12,16 @@ const ProjectDetails = props => {
     return (
       <div className="container section project-details">
         <div className="card z-depth-0">
+          <img className="user-img" src={client.photoURL} />
           <span className="card-title">
             {client.firstName + " " + client.lastName}
           </span>
-          <p>
-            Deploy web and mobile web apps in seconds using a secure global
-            content delivery network
+          <p className="userProfile-info">
+            Your username is your identity online. Whether you’re posting on
+            forums, editing a wiki, playing games, or doing any other online
+            activity that involves interacting with others, your username will
+            be the first thing other people see.People will make assumptions
+            about you based on the name you choose, so pick wisely!
           </p>
           <p>Balance - {client.balance} $</p>
         </div>

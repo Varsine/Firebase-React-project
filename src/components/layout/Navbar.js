@@ -3,13 +3,12 @@ import {Link} from "react-router-dom"
 import SignedInLinks from "./SignedInLink"
 import SignedOutLinks from "./SignedOutLink"
 import {connect} from "react-redux"
-import SignedInLink from "./SignedInLink"
 
 const Navbar = props => {
   const {auth, profile} = props
   console.log(auth)
   const links = auth.uid ? (
-    <SignedInLink profile={profile} />
+    <SignedInLinks profile={profile} />
   ) : (
     <SignedOutLinks />
   )
