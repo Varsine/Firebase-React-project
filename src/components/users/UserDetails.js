@@ -12,7 +12,7 @@ const ProjectDetails = props => {
     return (
       <div className="container section project-details">
         <div className="card z-depth-0">
-          <img className="user-img" src={client.photoURL} />
+          <img className="user-img" src={client.photoURL} alt="user" />
           <span className="card-title">
             {client.firstName + " " + client.lastName}
           </span>

@@ -5,6 +5,7 @@ function Loading() {
     <div>
       <img
         className="loding-img"
+        alt="loding..."
         src="https://i.ya-webdesign.com/images/loading-png-gif-6.gif"
       />
     </div>

@@ -1,6 +1,5 @@
 export const removeUser = id => {
   return (dispatch, getState, {getFirebase, getFirestore}) => {
-    const firebase = getFirebase()
     const firestore = getFirestore()
     firestore
       .collection("client")

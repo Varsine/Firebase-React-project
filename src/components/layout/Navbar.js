@@ -12,12 +12,13 @@ const Navbar = props => {
     <SignedOutLinks />
   )
   return (
-    <nav className="nav-bar" className="nav-wrapper gray darken-3">
+    <nav className="nav-wrapper gray darken-3">
       <div className="container">
         <Link to="/" className="brand-logo">
           <img
             className="home-img"
             src="https://img.icons8.com/color/480/firebase.png"
+            alt="home-img"
           />
         </Link>
         {links}

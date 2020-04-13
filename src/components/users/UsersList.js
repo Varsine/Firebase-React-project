@@ -41,7 +41,10 @@ class UsersList extends React.Component {
                   <td>
                     <Link to={"/update/" + client.id}>
                       <button className="update-icon">
-                        <img src="http://icons.iconarchive.com/icons/gakuseisean/ivista-2/32/Files-Edit-file-icon.png" />
+                        <img
+                          alt="update"
+                          src="http://icons.iconarchive.com/icons/gakuseisean/ivista-2/32/Files-Edit-file-icon.png"
+                        />
                       </button>
                     </Link>
                   </td>
@@ -50,7 +53,10 @@ class UsersList extends React.Component {
                       onClick={() => this.props.removeUser(client.id)}
                       className="close-icon"
                     >
-                      <img src="http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/48/Close-2-icon.png" />
+                      <img
+                        alt="close"
+                        src="http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/48/Close-2-icon.png"
+                      />
                     </button>
                   </td>
                 </tr>

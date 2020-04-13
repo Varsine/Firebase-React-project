@@ -1,8 +1,6 @@
 import React from "react"
-import {firestoreConnect} from "react-redux-firebase"
 import {connect} from "react-redux"
 import {createUser} from "../store/action/userAction"
-import {Redirect} from "react-router-dom"
 
 class CreateNewUser extends React.Component {
   state = {
