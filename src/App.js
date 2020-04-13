@@ -49,7 +49,7 @@ function App() {
             path="/signup"
             component={UserIsNotAuthenticated(SignUp)}
           ></Route>
-          <Route path="?" component={NotFound}></Route>
+          <Route path="*" component={NotFound}></Route>
         </Switch>
       </div>
     </Router>
