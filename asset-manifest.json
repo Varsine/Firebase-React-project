@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/.github.io/my-app/static/css/main.4c1d74e2.chunk.css",
-    "main.js": "/.github.io/my-app/static/js/main.5dc9f1bb.chunk.js",
-    "main.js.map": "/.github.io/my-app/static/js/main.5dc9f1bb.chunk.js.map",
-    "runtime-main.js": "/.github.io/my-app/static/js/runtime-main.b5ce7369.js",
-    "runtime-main.js.map": "/.github.io/my-app/static/js/runtime-main.b5ce7369.js.map",
-    "static/js/2.788f3bbb.chunk.js": "/.github.io/my-app/static/js/2.788f3bbb.chunk.js",
-    "static/js/2.788f3bbb.chunk.js.map": "/.github.io/my-app/static/js/2.788f3bbb.chunk.js.map",
-    "index.html": "/.github.io/my-app/index.html",
-    "precache-manifest.d7234e4100dd4b496f57f41a32aa1de7.js": "/.github.io/my-app/precache-manifest.d7234e4100dd4b496f57f41a32aa1de7.js",
-    "service-worker.js": "/.github.io/my-app/service-worker.js",
-    "static/css/main.4c1d74e2.chunk.css.map": "/.github.io/my-app/static/css/main.4c1d74e2.chunk.css.map",
-    "static/js/2.788f3bbb.chunk.js.LICENSE.txt": "/.github.io/my-app/static/js/2.788f3bbb.chunk.js.LICENSE.txt"
+    "main.css": "/.github.io/Firebase-React-project/static/css/main.4c1d74e2.chunk.css",
+    "main.js": "/.github.io/Firebase-React-project/static/js/main.5dc9f1bb.chunk.js",
+    "main.js.map": "/.github.io/Firebase-React-project/static/js/main.5dc9f1bb.chunk.js.map",
+    "runtime-main.js": "/.github.io/Firebase-React-project/static/js/runtime-main.96894bea.js",
+    "runtime-main.js.map": "/.github.io/Firebase-React-project/static/js/runtime-main.96894bea.js.map",
+    "static/js/2.c533f3d9.chunk.js": "/.github.io/Firebase-React-project/static/js/2.c533f3d9.chunk.js",
+    "static/js/2.c533f3d9.chunk.js.map": "/.github.io/Firebase-React-project/static/js/2.c533f3d9.chunk.js.map",
+    "index.html": "/.github.io/Firebase-React-project/index.html",
+    "precache-manifest.e426c3d9033792162412c52840bb47bc.js": "/.github.io/Firebase-React-project/precache-manifest.e426c3d9033792162412c52840bb47bc.js",
+    "service-worker.js": "/.github.io/Firebase-React-project/service-worker.js",
+    "static/css/main.4c1d74e2.chunk.css.map": "/.github.io/Firebase-React-project/static/css/main.4c1d74e2.chunk.css.map",
+    "static/js/2.c533f3d9.chunk.js.LICENSE.txt": "/.github.io/Firebase-React-project/static/js/2.c533f3d9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b5ce7369.js",
-    "static/js/2.788f3bbb.chunk.js",
+    "static/js/runtime-main.96894bea.js",
+    "static/js/2.c533f3d9.chunk.js",
     "static/css/main.4c1d74e2.chunk.css",
     "static/js/main.5dc9f1bb.chunk.js"
   ]
