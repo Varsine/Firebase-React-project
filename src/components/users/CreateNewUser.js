@@ -10,7 +10,10 @@ class CreateNewUser extends React.Component {
     lastName: "",
     email: "",
     balance: "",
-    error: ""
+    errorFirstname: "",
+    errorLastname: "",
+    errorEmail: "",
+    errorBalance: ""
   }
   handleChande = e => {
     this.setState({
@@ -20,19 +23,23 @@ class CreateNewUser extends React.Component {
 
   validate = () => {
     const {firstName, lastName, email, balance} = this.state
-    if (firstName == "" || lastName === "" || email === "" || balance === "") {
+    if (firstName === "" || lastName === "" || email === "" || balance === "") {
       this.setState({
-        error: "Input fields cannot be empty, fill in the fields"
+        errorBalance: "Input fields cannot be empty, fill in the fields"
       })
-    } else if (lastName.length < 3 || firstName.length < 3) {
+    } else if (firstName.length < 3) {
       this.setState({
-        error: "Firstname and lastname lengths must be large or equal to 3"
+        errorFirstname: "Firstname lengths must be large or equal to 3"
+      })
+    } else if (lastName.length < 5) {
+      this.setState({
+        errorLastname: "Lastname lengths must be large or equal to 5"
       })
     } else if (!email.includes("@")) {
-      this.setState({error: "Email should include @"})
+      this.setState({errorEmail: "Email should include @"})
     } else if (balance < 0) {
       this.setState({
-        error: "Balance cannot be negative"
+        errorBalance: "Balance cannot be negative"
       })
     } else {
       return this.state
@@ -45,12 +52,19 @@ class CreateNewUser extends React.Component {
     if (isValid) {
       this.props.createUser(this.state)
       this.props.history.push("/")
-    } else {
-      alert(this.state.error)
     }
   }
   render() {
-    const {lastName, firstName, email, balance} = this.state
+    const {
+      lastName,
+      firstName,
+      email,
+      balance,
+      errorFirstname,
+      errorLastname,
+      errorEmail,
+      errorBalance
+    } = this.state
     return (
       <div>
         <div className="container">
@@ -62,6 +76,9 @@ class CreateNewUser extends React.Component {
               value={firstName.slice(0, 1).toUpperCase() + firstName.slice(1)}
               onChange={this.handleChande}
             />
+            <div className="red-text center">
+              {errorFirstname ? <p>{errorFirstname}</p> : null}
+            </div>
             <label>Last Name</label>
             <input
               type="text"
@@ -69,6 +86,9 @@ class CreateNewUser extends React.Component {
               value={lastName.slice(0, 1).toUpperCase() + lastName.slice(1)}
               onChange={this.handleChande}
             />
+            <div className="red-text center">
+              {errorLastname ? <p>{errorLastname}</p> : null}
+            </div>
             <label>Email</label>
             <input
               type="text"
@@ -76,6 +96,9 @@ class CreateNewUser extends React.Component {
               value={email}
               onChange={this.handleChande}
             />
+            <div className="red-text center">
+              {errorEmail ? <p>{errorEmail}</p> : null}
+            </div>
             <label>Balans</label>
             <input
               type="number"
@@ -83,6 +106,9 @@ class CreateNewUser extends React.Component {
               value={balance}
               onChange={this.handleChande}
             />
+            <div className="red-text center">
+              {errorBalance ? <p>{errorBalance}</p> : null}
+            </div>
             <button className="btn pink lighten-1 z-depth-0">Add User</button>
           </form>
         </div>

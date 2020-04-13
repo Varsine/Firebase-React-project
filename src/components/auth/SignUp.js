@@ -10,7 +10,10 @@ class SignUp extends React.Component {
     email: "",
     password: "",
     passwordRepeat: "",
-    error: ""
+    errorFirstname: "",
+    errorLastname: "",
+    errorEmail: "",
+    errorPassword: ""
   }
   handleChange = e => {
     this.setState({
@@ -18,37 +21,34 @@ class SignUp extends React.Component {
     })
   }
   validate = () => {
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      passwordRepeat,
-      error
-    } = this.state
+    const {firstName, lastName, email, password, passwordRepeat} = this.state
     if (
-      firstName == "" ||
+      firstName === "" ||
       lastName === "" ||
       email === "" ||
       password === "" ||
       passwordRepeat === ""
     ) {
       this.setState({
-        error: "Input fields cannot be empty, fill in the fields"
+        errorPassword: "Input fields cannot be empty, fill in the fields"
       })
-    } else if (lastName.length < 3 || firstName.length < 3) {
+    } else if (firstName.length < 3) {
       this.setState({
-        error: "Firstname and lastname lengths must be large or equal to 3"
+        errorFirstname: "Firstname lengths must be large or equal to 3"
+      })
+    } else if (lastName.length < 5) {
+      this.setState({
+        errorLastname: "Lastname lengths must be large or equal to 5"
       })
     } else if (!email.includes("@")) {
-      this.setState({error: "Email should include @"})
-    } else if (password !== passwordRepeat) {
-      this.setState({
-        error: "Password and passwordrepeat must be the same"
-      })
+      this.setState({errorEmail: "Email should include @"})
     } else if (password.length < 8) {
       this.setState({
-        error: "The length of the password must be large or equal to 8"
+        errorPassword: "The length of the password must be large or equal to 8"
+      })
+    } else if (password !== passwordRepeat) {
+      this.setState({
+        errorPassword: "Password and passwordrepeat must be the same"
       })
     } else {
       return this.state
@@ -60,15 +60,23 @@ class SignUp extends React.Component {
     if (isValid) {
       this.props.signUp(this.state)
       this.props.history.push("/signin")
-    } else {
-      alert(this.state.error)
     }
   }
 
   render() {
-    const {authError, auth} = this.props
+    const {authError} = this.props
 
-    const {firstName, lastName, email, password, passwordRepeat} = this.state
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      passwordRepeat,
+      errorFirstname,
+      errorLastname,
+      errorEmail,
+      errorPassword
+    } = this.state
     return (
       <div className="container">
         <h2>Sing Up</h2>
@@ -79,28 +87,37 @@ class SignUp extends React.Component {
             id="firstName"
             value={firstName.slice(0, 1).toUpperCase() + firstName.slice(1)}
             onChange={this.handleChange}
-          />
+          />{" "}
+          <div className="red-text center">
+            {errorFirstname ? <p>{errorFirstname}</p> : null}
+          </div>
           <label>Last Name</label>
           <input
             type="text"
             id="lastName"
             value={lastName.slice(0, 1).toUpperCase() + lastName.slice(1)}
             onChange={this.handleChange}
-          />
+          />{" "}
+          <div className="red-text center">
+            {errorLastname ? <p>{errorLastname}</p> : null}
+          </div>
           <label>Email</label>
           <input
             type="text"
             id="email"
             value={email}
             onChange={this.handleChange}
-          />
+          />{" "}
+          <div className="red-text center">
+            {errorEmail ? <p>{errorEmail}</p> : null}
+          </div>
           <label>Password</label>
           <input
             type="password"
             id="password"
             value={password}
             onChange={this.handleChange}
-          />
+          />{" "}
           <label>Repeat Password</label>
           <input
             type="password"
@@ -108,6 +125,9 @@ class SignUp extends React.Component {
             value={passwordRepeat}
             onChange={this.handleChange}
           />
+          <div className="red-text center">
+            {errorPassword ? <p>{errorPassword}</p> : null}
+          </div>
           <button className="btn pink lighten-1 z-depth-0">Sign up</button>
           <div className="red-text center">
             {authError ? <p>{authError}</p> : null}
@@ -119,7 +139,6 @@ class SignUp extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     auth: state.firebase.auth,
     authError: state.auth.authError

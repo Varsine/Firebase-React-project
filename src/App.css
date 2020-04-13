@@ -1,9 +1,24 @@
+body {
+  background-color: #f2e6ff;
+}
+.user-profile {
+  background-color: #f2e6ff;
+}
 .users-form {
-  margin: 1% 10%;
+  margin: 1% 15%;
 }
 .users-form h1 {
   color: rgb(78, 75, 75);
   text-align: center;
+}
+.users-form table {
+  width: 100%;
+}
+.users-form tr:nth-child(even) {
+  background-color: rgb(119, 110, 110);
+}
+.users-form tr:nth-child(odd) {
+  background-color: rgb(238, 232, 232);
 }
 .loding-img {
   width: 10%;
@@ -15,15 +30,20 @@
 }
 .update-icon {
   border: none;
-  background-color: white;
+  background-color: rgb(238, 232, 232);
 }
 .update-icon:hover {
   background-color: rgb(236, 208, 171);
 }
 .close-icon {
   border: none;
-  background-color: white;
+  background-color: rgb(238, 232, 232);
 }
+.close-icon img {
+  width: 30px;
+  height: 30px;
+}
+
 .close-icon:hover {
   background-color: rgb(236, 208, 171);
 }
@@ -41,4 +61,61 @@
 }
 .userUpdate-form {
   margin: 2% 20%;
+}
+.not-found {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+.not-found img {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  h1,
+  h2,
+  h5 {
+    font-size: 25px;
+  }
+  .users-form table {
+    width: 50%;
+    font-size: 12px;
+    margin: 1% 9%;
+  }
+  .brand-logo {
+    margin-left: -10%;
+  }
+  .close-icon img {
+    width: 20px;
+    height: 20px;
+  }
+  .update-icon img {
+    width: 20px;
+    height: 20px;
+  }
+}
+@media screen and (max-width: 426px) {
+  .users-form table {
+    font-size: 9px;
+    margin-left: -10%;
+  }
+  .close-icon img {
+    width: 10px;
+    height: 10px;
+  }
+  .update-icon img {
+    width: 10px;
+    height: 10px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .users-form table {
+    font-size: 7px;
+    margin-left: -20%;
+  }
+}
+@media screen and (max-width: 376px) {
+  .users-form table {
+    font-size: 9px;
+    margin-left: -20%;
+  }
 }

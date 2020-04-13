@@ -8,6 +8,11 @@ import SignIn from "./components/auth/SignIn"
 import SignUp from "./components/auth/SignUp"
 import CreateNewUser from "./components/users/CreateNewUser"
 import UpdateUser from "./components/users/UpdateUser"
+import {
+  UserIsAuthenticated,
+  UserIsNotAuthenticated
+} from "./components/help component/auth"
+import NotFound from "./components/layout/NotFound"
 
 function App() {
   return (
@@ -18,12 +23,33 @@ function App() {
         </div>
 
         <Switch>
-          <Route exact path="/" component={Dashboard}></Route>
-          <Route path="/user/:id" component={UserDetails}></Route>
-          <Route path="/update/:id" component={UpdateUser}></Route>
-          <Route path="/signin" component={SignIn}></Route>
-          <Route path="/signup" component={SignUp}></Route>
-          <Route path="/create" component={CreateNewUser}></Route>
+          <Route
+            exact={true}
+            path="/"
+            component={UserIsAuthenticated(Dashboard)}
+          ></Route>
+          <Route
+            path="/user/:id"
+            component={UserIsAuthenticated(UserDetails)}
+          ></Route>
+          <Route
+            path="/update/:id"
+            component={UserIsAuthenticated(UpdateUser)}
+          ></Route>
+          <Route
+            path="/create"
+            component={UserIsAuthenticated(CreateNewUser)}
+          ></Route>
+          <Route
+            exact={true}
+            path="/signin"
+            component={UserIsNotAuthenticated(SignIn)}
+          ></Route>
+          <Route
+            path="/signup"
+            component={UserIsNotAuthenticated(SignUp)}
+          ></Route>
+          <Route path="?" component={NotFound}></Route>
         </Switch>
       </div>
     </Router>

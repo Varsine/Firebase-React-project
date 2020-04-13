@@ -18,8 +18,7 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const {authError, auth} = this.props
-    const {email, password, error} = this.state
+    const {authError} = this.props
     return (
       <div className="container">
         <h5 className="grey-text text-darken-3">Sign In</h5>

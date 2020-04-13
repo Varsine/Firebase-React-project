@@ -2,32 +2,59 @@ import React from "react"
 import {compose} from "redux"
 import {connect} from "react-redux"
 import {firestoreConnect} from "react-redux-firebase"
-import {updateUser} from "../store/action/userAction"
 
 class UpdateUser extends React.Component {
   state = {
-    firstNmae: "",
+    firstName: "",
     lastName: "",
     email: "",
-    balance: ""
+    balance: "",
+    errorEmail: "",
+    errorBalance: ""
   }
-
   handleChange = e => {
+    e.preventDefault()
     this.setState({
       [e.target.id]: e.target.value
     })
   }
+  validate = () => {
+    const {email, balance} = this.state
 
+    if (!email.includes("@")) {
+      this.setState({errorEmail: "Email should include @"})
+    } else if (balance < 0) {
+      this.setState({
+        errorBalance: "Balance cannot be negative"
+      })
+    } else {
+      return this.state
+    }
+  }
   handleSubmit = e => {
     e.preventDefault()
-    this.props.updateUser(this.state)
-    this.props.history.push("/")
+    const {client, firestore} = this.props
+    const {firstName, lastName, email, balance} = this.state
+
+    const isValid = this.validate()
+    if (isValid) {
+      this.props.history.push("/")
+      firestore
+        .collection("client")
+        .doc(this.props.match.params.id)
+        .update({
+          ...this.state,
+          lastName: lastName ? lastName : client.lastName,
+          firstName: firstName ? firstName : client.firstName,
+          email: email ? email : client.email,
+          balance: balance ? balance : client.balance
+        })
+    }
   }
 
   render() {
-    console.log(this.props)
     const {client} = this.props
-    const {lastName, firstName, email, balance} = this.state
+    const {errorEmail, errorBalance} = this.state
 
     return (
       <div>
@@ -39,8 +66,7 @@ class UpdateUser extends React.Component {
               <p>Update first name</p>
               <input
                 type="text"
-                placeholder={client.firstName}
-                value={firstName.slice(0, 1).toUpperCase() + firstName.slice(1)}
+                defaultValue={client.firstName}
                 id="firstName"
                 onChange={this.handleChange}
               />
@@ -49,8 +75,7 @@ class UpdateUser extends React.Component {
               <p>Update last name</p>
               <input
                 type="text"
-                placeholder={client.lastName}
-                value={lastName.slice(0, 1).toUpperCase() + lastName.slice(1)}
+                defaultValue={client.lastName}
                 id="lastName"
                 onChange={this.handleChange}
               />
@@ -58,22 +83,26 @@ class UpdateUser extends React.Component {
             <div>
               <p>Update email</p>
               <input
-                type="email"
-                placeholder={client.email}
-                value={email}
+                type="text"
+                defaultValue={client.email}
                 id="email"
                 onChange={this.handleChange}
               />
+              <div className="red-text center">
+                {errorEmail ? <p>{errorEmail}</p> : null}
+              </div>
             </div>
             <div>
               <p>Update balance</p>
               <input
                 type="number"
-                placeholder={client.balance}
-                value={balance}
+                defaultValue={client.balance}
                 id="balance"
                 onChange={this.handleChange}
               />
+              <div className="red-text center">
+                {errorBalance ? <p>{errorBalance}</p> : null}
+              </div>
             </div>
             <div className="btn pink lighten-1 z-depth-0">
               <button>Update</button>
@@ -85,7 +114,6 @@ class UpdateUser extends React.Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  console.log(state)
   const id = ownProps.match.params.id
   const clients = state.firestore.data.client
   const client = clients ? clients[id] : null
@@ -95,13 +123,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updateUser: user => dispatch(updateUser(user))
-  }
-}
-
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps),
   firestoreConnect([{collection: "client"}])
 )(UpdateUser)

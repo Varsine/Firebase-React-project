@@ -8,7 +8,6 @@ import {removeUser} from "../store/action/authAction"
 
 class UsersList extends React.Component {
   render() {
-    console.log(this.props)
     const clients = this.props.clients
     return (
       <div className="users-form">
@@ -34,17 +33,18 @@ class UsersList extends React.Component {
                   <td>{index + 1}</td>
                   <td>{client.firstName}</td>
                   <td>{client.lastName}</td>
-                  <Link to={"/user/" + client.id}>
-                    <td>{client.email}</td>
-                  </Link>
+                  <td>
+                    <Link to={"/user/" + client.id}>{client.email}</Link>{" "}
+                  </td>
+
                   <td>{client.balance}</td>
-                  <Link to={"/update/" + client.id}>
-                    <td>
+                  <td>
+                    <Link to={"/update/" + client.id}>
                       <button className="update-icon">
                         <img src="http://icons.iconarchive.com/icons/gakuseisean/ivista-2/32/Files-Edit-file-icon.png" />
                       </button>
-                    </td>
-                  </Link>
+                    </Link>
+                  </td>
                   <td>
                     <button
                       onClick={() => this.props.removeUser(client.id)}
@@ -63,7 +63,6 @@ class UsersList extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log(state)
   return {
     clients: state.firestore.ordered.client
   }
