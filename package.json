@@ -1,5 +1,5 @@
 {
-  "homepage": "http://varsine/.github.io/my-app/",
+  "homepage": "http://Varsine/.github.io/Firebase-React-project",
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
@@ -8,20 +8,15 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "firebase": "^7.13.2-0",
-    "gh-pages": "^2.2.0",
     "history": "^4.10.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^5.1.1",
     "react-redux-firebase": "^2.2.4",
-    "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "react-thunk": "^1.0.0",
     "recompose": "^0.30.0",
-    "redux": "^4.0.5",
     "redux-auth-wrapper": "^3.0.0",
-    "redux-firestore": "^0.13.0",
-    "redux-thunk": "^2.3.0"
+    "redux-firestore": "^0.13.0"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -47,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^2.2.0",
     "redux-devtools-extension": "^2.13.8"
   }
 }
